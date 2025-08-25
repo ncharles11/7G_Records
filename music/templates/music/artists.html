@@ -1,0 +1,51 @@
+{% extends 'music/base.html' %}
+{% load static %}
+
+{% block extra_css %}
+<link rel="stylesheet" href="{% static 'css/artists.css' %}">
+{% endblock %}
+
+{% block content %}
+<section class="artists-page">
+    <h1 class="page-title">Our Artists</h1>
+    <p class="page-intro">Meet the talented musicians signed with Lefemes Music Production.</p>
+
+    <div class="artists-container">
+        {% for artiste in artistes %}
+        <div class="artist-card">
+            <div class="artist-card-inner">
+                <!-- Face avant -->
+                <div class="artist-card-front">
+                    {% if artiste.photo %}
+                    <img src="{{ artiste.photo.url }}" alt="{{ artiste.nom }}" class="artist-image">
+                    {% else %}
+                    <div class="artist-image placeholder">No Photo</div>
+                    {% endif %}
+                    <h2 class="artist-name">{{ artiste.nom }}</h2>
+                </div>
+
+                <!-- Face arrière -->
+                <div class="artist-card-back">
+                    <h3>{{ artiste.nom }}</h3>
+                    <p class="artist-bio">
+                        {% if artiste.bio %}{{ artiste.bio|truncatewords:50 }}{% else %}Biographie non disponible.{% endif %}
+                    </p>
+                    <p class="artist-releases">
+                        {% if artiste.nouvelles_sorties %}Nouvelles sorties : {{ artiste.nouvelles_sorties }}{% else %}Aucune sortie récente.{% endif %}
+                    </p>
+                    <p class="artist-social">
+                        {% if artiste.instagram %}<a href="{{ artiste.instagram }}" target="_blank">@Instagram</a>{% else %}Pas de compte Instagram{% endif %}
+                    </p>
+                </div>
+            </div>
+        </div>
+        {% empty %}
+        <p>No artists available at the moment.</p>
+        {% endfor %}
+    </div>
+</section>
+{% endblock %}
+
+{% block extra_js %}
+<script src="{% static 'js/artists.js' %}"></script>
+{% endblock %}

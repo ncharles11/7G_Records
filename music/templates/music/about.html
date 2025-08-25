@@ -1,0 +1,25 @@
+{% extends 'music/base.html' %}
+{% load static %}
+
+{% block extra_css %}
+<link rel="stylesheet" href="{% static 'css/about.css' %}">
+{% endblock %}
+
+{% block content %}
+<div class="about-container">
+    <h1 class="about-title">À propos de Lefemes Music Production</h1>
+    <p class="about-text">
+        Bienvenue sur notre plateforme ! Nous sommes passionnés par la musique et nous créons un espace 
+        où les frérots peuvent partager leur art, leurs histoires et leurs chansons avec le monde.
+    </p>
+    <p class="about-text">
+        Notre mission est simple : donner aux musiciens une vitrine pour faire découvrir leurs œuvres 
+        et connecter les auditeurs à de nouvelles expériences sonores.
+    </p>
+    <h2 class="about-subtitle">Notre histoire</h2>
+    <p class="about-text">
+        Fondée en 2025, Lefemes Music Production a commencé comme un petit projet d’amis musiciens. 
+        Aujourd'hui, nous collaborons avec des artistes du monde entier pour promouvoir la diversité musicale.
+    </p>
+</div>
+{% endblock %}

@@ -1,0 +1,21 @@
+{% extends 'music/base.html' %}
+{% load static %}
+
+{% block title %}Lefemes Music Production{% endblock %}
+
+{% block content %}
+    <!-- Hero Section -->
+    <header class="hero">
+        <h1>7G Records</h1>
+        <p>Discover our rising music stars.</p>
+        <a href="{% url 'artists' %}" class="btn">Explore Artists</a>
+        <a href="{% url 'music' %}" class="btn">Play Music</a>
+    </header>
+
+    <!-- Main Content Section -->
+    <section>
+        <h2>Listen to Our Music</h2>
+        <p>Join the community and stream now.</p>
+        <a href="{% url 'music' %}" class="btn primary">Start Listening</a>
+    </section>
+{% endblock %}

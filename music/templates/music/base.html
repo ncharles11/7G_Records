@@ -1,0 +1,38 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <title>{% block title %}Portfolio Musical{% endblock %}</title>
+    <link rel="stylesheet" href="{% static 'css/style.css' %}">
+    <link rel="stylesheet" href="{% static 'css/splash.css' %}">
+    {% block extra_css %}{% endblock %}
+</head>
+<body>
+    <!-- Splash Screen -->
+    <div id="splash-screen">
+        <h1 class="splash-title">7G Records </h1>
+        <p class="splash-subtitle">Loading 🦁...</p>
+    </div>
+
+    <!-- Contenu principal (caché au début) -->
+    <div id="main-content" style="display: none;">
+        <nav>
+            <a href="{% url 'home' %}">Home</a>
+            <a href="{% url 'artists' %}">Artists</a>
+            <a href="{% url 'music' %}">Music</a>
+            <a href="{% url 'about' %}">About</a>
+        </nav>
+
+        <main>
+            {% block content %}{% endblock %}
+        </main>
+
+        <footer>
+            <p>&copy; 2025 7G Records. Tous droits réservés.</p>
+        </footer>
+    </div>
+
+    <script src="{% static 'js/splash.js' %}"></script>
+</body>
+</html>

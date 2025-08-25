@@ -1,0 +1,51 @@
+{% extends 'music/base.html' %}
+{% load static %}
+
+{% block content %}
+<link rel="stylesheet" href="{% static 'css/music.css' %}">
+
+<div class="music-container">
+    <h1>Music Library</h1>
+
+    {% for artiste in artistes %}
+    <div class="artiste-card">
+        <h2>{{ artiste.nom }}</h2>
+        {% if artiste.photo %}
+            <img src="{{ artiste.photo.url }}" alt="{{ artiste.nom }}" class="artiste-photo">
+        {% endif %}
+        <p>{{ artiste.bio }}</p>
+
+        <div class="chansons-list">
+            {% for chanson in artiste.chansons.all %}
+            <div class="chanson-card">
+                <h3>{{ chanson.titre }}</h3>
+                {% if chanson.cover %}
+                    <img src="{{ chanson.cover.url }}" alt="{{ chanson.titre }}" class="chanson-cover">
+                {% endif %}
+                <audio controls>
+                    <source src="{{ chanson.fichier_audio.url }}" type="audio/mpeg">
+                    Your browser does not support audio playback.
+                </audio>
+
+                <button class="toggle-lyrics-btn" onclick="toggleLyrics('lyrics-{{ chanson.id }}')">
+                    Voir les paroles
+                </button>
+                <div id="lyrics-{{ chanson.id }}" class="lyrics-text" style="display:none;">
+                    <pre>{{ chanson.description }}</pre>
+                </div>
+            </div>
+            {% endfor %}
+        </div>
+    </div>
+    {% empty %}
+        <p>No artist found.</p>
+    {% endfor %}
+</div>
+
+<script>
+function toggleLyrics(id) {
+    const lyricsDiv = document.getElementById(id);
+    lyricsDiv.style.display = lyricsDiv.style.display === "none" ? "block" : "none";
+}
+</script>
+{% endblock %}
