@@ -1,0 +1,119 @@
+.artists-container {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    gap: 30px;
+    padding: 20px;
+    max-width: 1200px;
+    margin: 0 auto;
+    background: #1F1B24;
+    border-radius: 12px;
+}
+
+.artist-card {
+    width: 250px;
+    height: 350px;
+    perspective: 1000px;
+    margin: 15px;
+    cursor: pointer;
+}
+
+.artist-card-inner {
+    position: relative;
+    width: 100%;
+    height: 100%;
+    transition: transform 0.8s ease-in-out;
+    transform-style: preserve-3d;
+}
+
+.artist-card.flipped .artist-card-inner {
+    transform: rotateY(180deg);
+}
+
+.artist-card-front,
+.artist-card-back {
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    backface-visibility: hidden;
+    border-radius: 15px;
+    overflow: hidden;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    padding: 15px;
+    box-shadow: 0 6px 12px rgba(0,0,0,0.5);
+}
+
+/* Face avant */
+.artist-card-front {
+    background-color: #222;
+    color: #E0E0E0;
+}
+
+/* Face arrière */
+.artist-card-back {
+    transform: rotateY(180deg);
+    background: linear-gradient(135deg, #1F1B24, #3700B3);
+    color: #E0E0E0;
+    text-align: center;
+    box-shadow: 0 0 15px #BB86FC, 0 0 25px #03DAC6;
+    animation: pulseGlow 2.5s infinite alternate;
+}
+
+@keyframes pulseGlow {
+    0% { box-shadow: 0 0 10px #BB86FC, 0 0 20px #03DAC6; }
+    50% { box-shadow: 0 0 20px #BB86FC, 0 0 35px #03DAC6; }
+    100% { box-shadow: 0 0 10px #BB86FC, 0 0 20px #03DAC6; }
+}
+
+.artist-card img.artist-image {
+    width: 120px;
+    height: 120px;
+    border-radius: 50%;
+    object-fit: cover;
+    border: 3px solid #BB86FC;
+    margin-bottom: 10px;
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+
+.artist-card:hover img.artist-image {
+    transform: scale(1.1);
+    box-shadow: 0 0 15px #03DAC6, 0 0 20px #BB86FC;
+}
+
+.artist-name {
+    font-size: 1.2rem;
+    font-weight: bold;
+    color: #03DAC6;
+    margin-top: 10px;
+    text-shadow: 0 0 5px #03DAC6, 0 0 10px #BB86FC;
+}
+
+.artist-card-back a {
+    color: #03DAC6;
+    text-decoration: none;
+    font-weight: bold;
+}
+
+.artist-card-back a:hover {
+    color: #BB86FC;
+    text-shadow: 0 0 5px #BB86FC, 0 0 10px #03DAC6;
+}
+
+.artist-card-back .artist-bio,
+.artist-card-back .artist-releases,
+.artist-card-back .artist-social {
+    margin-top: 8px;
+    font-size: 0.9rem;
+}
+
+/* Responsive */
+@media (min-width: 768px) {
+    .artist-card { flex: 1 1 calc(33.33% - 30px); }
+}
+
+@media (min-width: 1024px) {
+    .artist-card { flex: 1 1 calc(25% - 30px); }
+}
